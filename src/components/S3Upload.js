@@ -67,7 +67,7 @@ class S3Upload extends Component {
         <div>
 			<form onSubmit={this.onFormSubmit}>
 	          <input type="file" className="form-control" onChange={this.onChange} />
-	          <button type="submit" className="btn btn-primary" >Upload</button>
+	          <button type="submit" className="btn btn-primary " >Upload</button>
 	        </form>
 		</div>
      )

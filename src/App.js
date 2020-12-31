@@ -4,9 +4,11 @@ import React from "react"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import S3Upload from './components/S3Upload'
 import MyNavBar from './components/MyNavBar'
+import SignOutButton from './components/SignOutButton'
 import SQITable from './components/SQITable'
+import WriteDB from './components/WriteDB'
 import Amplify, { Storage } from 'aws-amplify';
-import {AmplifySignOut, withAuthenticator} from '@aws-amplify/ui-react'
+import {AmplifySignOut, AmplifyS3Album, withAuthenticator} from '@aws-amplify/ui-react'
 import awsconfig from './aws-exports';
 Amplify.configure(awsconfig);
 
@@ -37,11 +39,11 @@ class App extends  React.Component {
 		{/*
 			<SQITable results={this.state.results}></SQITable>
 			<S3Upload onUpdatedResults={this.onUpdatedResults.bind(this)}></S3Upload>
+			<AmplifySignOut  className="btn my-2 my-sm-0"></AmplifySignOut>
 		*/}
-        <MyNavBar></MyNavBar>
-        <SQITable results={this.state.results}></SQITable>
-		<S3Upload onUpdatedResults={this.onUpdatedResults.bind(this)}></S3Upload>
+         <MyNavBar></MyNavBar>
 
+		 <WriteDB></WriteDB>
 
 	    </div>
 	  );
