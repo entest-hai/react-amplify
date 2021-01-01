@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Button} from 'react-bootstrap'
 import { DataStore, Predicates } from '@aws-amplify/datastore'
-import {Records} from "./../models";
+import {Record} from "./../models";
 
 class WriteDB extends Component {
 
@@ -9,18 +9,17 @@ class WriteDB extends Component {
 		console.log("write to db");
 
 		await DataStore.save(
-		  new Records({
-		    name: "1004.csv",
-			samplingrate: 500,
-			GA: 28,
-			msqich1: 0.9
+		  new Record({
+		    name: "1002.csv",
+			samplingRate: 500,
+			gestationAge: 28,
 		  })
 		);
 	}
 
 	async doReadDB() {
 		try {
-		  const posts = await DataStore.query(Records);
+		  const posts = await DataStore.query(Record);
 		  console.log("Posts retrieved successfully!", JSON.stringify(posts, null, 2));
 		} catch (error) {
 		  console.log("Error retrieving posts", error);
@@ -35,9 +34,9 @@ class WriteDB extends Component {
 		return (
 			<div>
 				<h1>Write to DB</h1>
-				<Button onClick={this.doWriteDB}>WriteDB</Button>
-				<Button onClick={this.doReadDB}>ReadDB</Button>
-				<Button onClick={this.doDeletedDB}>DeleteDB</Button>
+				<div><Button onClick={this.doWriteDB}>WriteDB</Button></div>
+				<div><Button onClick={this.doReadDB}>ReadDB</Button></div>
+				<div><Button onClick={this.doDeletedDB}>DeleteDB</Button></div>
 			</div>
         )
 	}

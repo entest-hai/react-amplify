@@ -1,7 +1,7 @@
 export const schema = {
     "models": {
-        "Records": {
-            "name": "Records",
+        "Record": {
+            "name": "Record",
             "fields": {
                 "id": {
                     "name": "id",
@@ -17,24 +17,129 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "samplingrate": {
-                    "name": "samplingrate",
+                "samplingRate": {
+                    "name": "samplingRate",
                     "isArray": false,
                     "type": "Int",
                     "isRequired": false,
                     "attributes": []
                 },
-                "GA": {
-                    "name": "GA",
+                "gestationAge": {
+                    "name": "gestationAge",
                     "isArray": false,
                     "type": "Int",
                     "isRequired": false,
                     "attributes": []
                 },
-                "msqich1": {
-                    "name": "msqich1",
+                "mSQICh1": {
+                    "name": "mSQICh1",
                     "isArray": false,
                     "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "mSQICh2": {
+                    "name": "mSQICh2",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "mSQICh3": {
+                    "name": "mSQICh3",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "mSQICh4": {
+                    "name": "mSQICh4",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "fSQICh1": {
+                    "name": "fSQICh1",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "fSQICh2": {
+                    "name": "fSQICh2",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "fSQICh3": {
+                    "name": "fSQICh3",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "fSQICh4": {
+                    "name": "fSQICh4",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "rawECGSQI": {
+                    "name": "rawECGSQI",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "signalLost": {
+                    "name": "signalLost",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "signalLostCh1": {
+                    "name": "signalLostCh1",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "signalLostCh2": {
+                    "name": "signalLostCh2",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "signalLostCh3": {
+                    "name": "signalLostCh3",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "signalLostCh4": {
+                    "name": "signalLostCh4",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "createdDate": {
+                    "name": "createdDate",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "description": {
+                    "name": "description",
+                    "isArray": false,
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 }
@@ -67,5 +172,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "ce2e3916e274e9c73accfeb53ec4bbbc"
+    "version": "0978e4a0a36eb3ceea2b5614ff6245cf"
 };

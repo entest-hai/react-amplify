@@ -9,9 +9,9 @@ import SQITable from './components/SQITable'
 import WriteDB from './components/WriteDB'
 import Amplify, { Storage } from 'aws-amplify';
 import {AmplifySignOut, AmplifyS3Album, withAuthenticator} from '@aws-amplify/ui-react'
+import './components/amplify-authenticator.css'
 import awsconfig from './aws-exports';
 Amplify.configure(awsconfig);
-
 
 class App extends  React.Component {
 
@@ -42,7 +42,9 @@ class App extends  React.Component {
 			<AmplifySignOut  className="btn my-2 my-sm-0"></AmplifySignOut>
 		*/}
          <MyNavBar></MyNavBar>
-
+			 <SQITable results={this.state.results}></SQITable>
+			 <S3Upload onUpdatedResults={this.onUpdatedResults.bind(this)}></S3Upload>
+			 <AmplifySignOut> </AmplifySignOut>
 		 <WriteDB></WriteDB>
 
 	    </div>
