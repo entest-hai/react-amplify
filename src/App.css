@@ -13,7 +13,7 @@
   }
 }
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -22,7 +22,19 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+} */
+
+
+.App-header {
+    background-color: #282c34;
+    min-height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
+
 
 .App-link {
   color: #61dafb;
@@ -37,10 +49,37 @@
   }
 }
 
-amplify-authenticator {
+/* amplify-authenticator {
+  background:  #036;
+  padding: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex: 1;
   height: 200vh;
+} */
+
+/* amplify-sign-out {
+	background: green;
+} */
+
+:root {
+  --amplify-primary-color: #036;
+  --amplify-primary-tint: #036;
+  --amplify-primary-shade: #036;
+}
+
+.songList {
+    display: flex;
+    flex-direction: column;
+}
+
+.songCard {
+    display: flex;
+    justify-content: space-around;
+    padding: 5px;
+}
+
+.songTitle {
+    font-weight: bold;
 }
