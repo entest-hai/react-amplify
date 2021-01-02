@@ -8,7 +8,7 @@ class MyNavBar extends Component {
 		return (
 
 <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-      <a className="navbar-brand" href="#">Navbar</a>
+      <a className="navbar-brand" href="#">Femom</a>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
@@ -35,14 +35,10 @@ class MyNavBar extends Component {
           <li>
           </li>
         </ul>
-        
         <form className="form-inline my-2 my-lg-0">
           <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
           <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
-
-        <AmplifySignOut className="btn my-2 my-sm-0"></AmplifySignOut>
-
       </div>
     </nav>
 

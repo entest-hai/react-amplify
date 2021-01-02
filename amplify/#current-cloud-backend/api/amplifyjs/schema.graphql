@@ -1,0 +1,38 @@
+type Record @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  samplingRate: Int
+  gestationAge: Int
+  mSQICh1: Float
+  mSQICh2: Float
+  mSQICh3: Float
+  mSQICh4: Float
+  fSQICh1: Float
+  fSQICh2: Float
+  fSQICh3: Float
+  fSQICh4: Float
+  rawECGSQI: Float
+  signalLost: Float
+  signalLostCh1: Float
+  signalLostCh2: Float
+  signalLostCh3: Float
+  signalLostCh4: Float
+  createdDate: AWSDateTime
+  description: String
+}
+
+
+type Song @model {
+  id: ID! 
+  title: String!
+  description: String!
+  filePath: String!
+  like: Int!
+  owner: String! 
+}
+
+type Todo @model {
+  id: ID!
+  name: String!
+  description: String
+}

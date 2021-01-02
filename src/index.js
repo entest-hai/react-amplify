@@ -3,13 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 // import MusicApp from './MusicApp';
 // import FemomSQIApp from './FemomSQIApp';
-import LandingPageApp from './LandingPageApp';
+// import LandingPageApp from './LandingPageApp';
+import AmplifyAuthenApp from './AmplifyAuthenApp';
+
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <LandingPageApp></LandingPageApp>
-  </React.StrictMode>,
+  
+  <AmplifyAuthenApp></AmplifyAuthenApp>,
+  
   document.getElementById('root')
 );
 

@@ -1,0 +1,385 @@
+type Record @aws_iam @aws_api_key {
+  id: ID!
+  name: String!
+  samplingRate: Int
+  gestationAge: Int
+  mSQICh1: Float
+  mSQICh2: Float
+  mSQICh3: Float
+  mSQICh4: Float
+  fSQICh1: Float
+  fSQICh2: Float
+  fSQICh3: Float
+  fSQICh4: Float
+  rawECGSQI: Float
+  signalLost: Float
+  signalLostCh1: Float
+  signalLostCh2: Float
+  signalLostCh3: Float
+  signalLostCh4: Float
+  createdDate: AWSDateTime
+  description: String
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type Song {
+  id: ID!
+  title: String!
+  description: String!
+  filePath: String!
+  like: Int!
+  owner: String!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type Todo {
+  id: ID!
+  name: String!
+  description: String
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelRecordConnection @aws_api_key @aws_iam {
+  items: [Record]
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+input ModelRecordFilterInput {
+  id: ModelIDInput
+  name: ModelStringInput
+  samplingRate: ModelIntInput
+  gestationAge: ModelIntInput
+  mSQICh1: ModelFloatInput
+  mSQICh2: ModelFloatInput
+  mSQICh3: ModelFloatInput
+  mSQICh4: ModelFloatInput
+  fSQICh1: ModelFloatInput
+  fSQICh2: ModelFloatInput
+  fSQICh3: ModelFloatInput
+  fSQICh4: ModelFloatInput
+  rawECGSQI: ModelFloatInput
+  signalLost: ModelFloatInput
+  signalLostCh1: ModelFloatInput
+  signalLostCh2: ModelFloatInput
+  signalLostCh3: ModelFloatInput
+  signalLostCh4: ModelFloatInput
+  createdDate: ModelStringInput
+  description: ModelStringInput
+  and: [ModelRecordFilterInput]
+  or: [ModelRecordFilterInput]
+  not: ModelRecordFilterInput
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+type Query {
+  syncSongs(filter: ModelSongFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelSongConnection
+  getSong(id: ID!): Song
+  listSongs(filter: ModelSongFilterInput, limit: Int, nextToken: String): ModelSongConnection
+  syncTodos(filter: ModelTodoFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelTodoConnection
+  getTodo(id: ID!): Todo
+  listTodos(filter: ModelTodoFilterInput, limit: Int, nextToken: String): ModelTodoConnection
+  getRecord(id: ID!): Record @aws_api_key @aws_iam
+  listRecords(filter: ModelRecordFilterInput, limit: Int, nextToken: String): ModelRecordConnection @aws_api_key @aws_iam
+  syncRecords(filter: ModelRecordFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelRecordConnection @aws_api_key @aws_iam
+}
+
+input CreateRecordInput {
+  id: ID
+  name: String!
+  samplingRate: Int
+  gestationAge: Int
+  mSQICh1: Float
+  mSQICh2: Float
+  mSQICh3: Float
+  mSQICh4: Float
+  fSQICh1: Float
+  fSQICh2: Float
+  fSQICh3: Float
+  fSQICh4: Float
+  rawECGSQI: Float
+  signalLost: Float
+  signalLostCh1: Float
+  signalLostCh2: Float
+  signalLostCh3: Float
+  signalLostCh4: Float
+  createdDate: AWSDateTime
+  description: String
+  _version: Int
+}
+
+input UpdateRecordInput {
+  id: ID!
+  name: String
+  samplingRate: Int
+  gestationAge: Int
+  mSQICh1: Float
+  mSQICh2: Float
+  mSQICh3: Float
+  mSQICh4: Float
+  fSQICh1: Float
+  fSQICh2: Float
+  fSQICh3: Float
+  fSQICh4: Float
+  rawECGSQI: Float
+  signalLost: Float
+  signalLostCh1: Float
+  signalLostCh2: Float
+  signalLostCh3: Float
+  signalLostCh4: Float
+  createdDate: AWSDateTime
+  description: String
+  _version: Int
+}
+
+input DeleteRecordInput {
+  id: ID
+  _version: Int
+}
+
+type Mutation {
+  createSong(input: CreateSongInput!, condition: ModelSongConditionInput): Song
+  updateSong(input: UpdateSongInput!, condition: ModelSongConditionInput): Song
+  deleteSong(input: DeleteSongInput!, condition: ModelSongConditionInput): Song
+  createTodo(input: CreateTodoInput!, condition: ModelTodoConditionInput): Todo
+  updateTodo(input: UpdateTodoInput!, condition: ModelTodoConditionInput): Todo
+  deleteTodo(input: DeleteTodoInput!, condition: ModelTodoConditionInput): Todo
+  createRecord(input: CreateRecordInput!, condition: ModelRecordConditionInput): Record @aws_api_key @aws_iam
+  updateRecord(input: UpdateRecordInput!, condition: ModelRecordConditionInput): Record @aws_api_key @aws_iam
+  deleteRecord(input: DeleteRecordInput!, condition: ModelRecordConditionInput): Record @aws_api_key @aws_iam
+}
+
+input ModelRecordConditionInput {
+  name: ModelStringInput
+  samplingRate: ModelIntInput
+  gestationAge: ModelIntInput
+  mSQICh1: ModelFloatInput
+  mSQICh2: ModelFloatInput
+  mSQICh3: ModelFloatInput
+  mSQICh4: ModelFloatInput
+  fSQICh1: ModelFloatInput
+  fSQICh2: ModelFloatInput
+  fSQICh3: ModelFloatInput
+  fSQICh4: ModelFloatInput
+  rawECGSQI: ModelFloatInput
+  signalLost: ModelFloatInput
+  signalLostCh1: ModelFloatInput
+  signalLostCh2: ModelFloatInput
+  signalLostCh3: ModelFloatInput
+  signalLostCh4: ModelFloatInput
+  createdDate: ModelStringInput
+  description: ModelStringInput
+  and: [ModelRecordConditionInput]
+  or: [ModelRecordConditionInput]
+  not: ModelRecordConditionInput
+}
+
+type Subscription {
+  onCreateSong: Song @aws_subscribe(mutations: ["createSong"])
+  onUpdateSong: Song @aws_subscribe(mutations: ["updateSong"])
+  onDeleteSong: Song @aws_subscribe(mutations: ["deleteSong"])
+  onCreateTodo: Todo @aws_subscribe(mutations: ["createTodo"])
+  onUpdateTodo: Todo @aws_subscribe(mutations: ["updateTodo"])
+  onDeleteTodo: Todo @aws_subscribe(mutations: ["deleteTodo"])
+  onCreateRecord: Record @aws_subscribe(mutations: ["createRecord"]) @aws_api_key @aws_iam
+  onUpdateRecord: Record @aws_subscribe(mutations: ["updateRecord"]) @aws_api_key @aws_iam
+  onDeleteRecord: Record @aws_subscribe(mutations: ["deleteRecord"]) @aws_api_key @aws_iam
+}
+
+type ModelSongConnection {
+  items: [Song]
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelSongFilterInput {
+  id: ModelIDInput
+  title: ModelStringInput
+  description: ModelStringInput
+  filePath: ModelStringInput
+  like: ModelIntInput
+  owner: ModelStringInput
+  and: [ModelSongFilterInput]
+  or: [ModelSongFilterInput]
+  not: ModelSongFilterInput
+}
+
+input CreateSongInput {
+  id: ID
+  title: String!
+  description: String!
+  filePath: String!
+  like: Int!
+  owner: String!
+  _version: Int
+}
+
+input UpdateSongInput {
+  id: ID!
+  title: String
+  description: String
+  filePath: String
+  like: Int
+  owner: String
+  _version: Int
+}
+
+input DeleteSongInput {
+  id: ID
+  _version: Int
+}
+
+input ModelSongConditionInput {
+  title: ModelStringInput
+  description: ModelStringInput
+  filePath: ModelStringInput
+  like: ModelIntInput
+  owner: ModelStringInput
+  and: [ModelSongConditionInput]
+  or: [ModelSongConditionInput]
+  not: ModelSongConditionInput
+}
+
+type ModelTodoConnection {
+  items: [Todo]
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelTodoFilterInput {
+  id: ModelIDInput
+  name: ModelStringInput
+  description: ModelStringInput
+  and: [ModelTodoFilterInput]
+  or: [ModelTodoFilterInput]
+  not: ModelTodoFilterInput
+}
+
+input CreateTodoInput {
+  id: ID
+  name: String!
+  description: String
+  _version: Int
+}
+
+input UpdateTodoInput {
+  id: ID!
+  name: String
+  description: String
+  _version: Int
+}
+
+input DeleteTodoInput {
+  id: ID
+  _version: Int
+}
+
+input ModelTodoConditionInput {
+  name: ModelStringInput
+  description: ModelStringInput
+  and: [ModelTodoConditionInput]
+  or: [ModelTodoConditionInput]
+  not: ModelTodoConditionInput
+}
