@@ -2,15 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // import MusicApp from './MusicApp';
-// import FemomSQIApp from './FemomSQIApp';
+import FemomSQIApp from './FemomSQIApp';
 // import LandingPageApp from './LandingPageApp';
-import AmplifyAuthenApp from './AmplifyAuthenApp';
+// import AmplifyAuthenApp from './AmplifyAuthenApp';
 
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   
-  <AmplifyAuthenApp></AmplifyAuthenApp>,
+  <FemomSQIApp></FemomSQIApp>,
   
   document.getElementById('root')
 );

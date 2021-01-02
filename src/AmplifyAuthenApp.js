@@ -13,7 +13,7 @@ export default function AmplifyAuthenApp() {
     <PrimarySearchAppBar></PrimarySearchAppBar>
     <AmplifyAuthenticator>
     <div>
-      My App
+      
       
     </div>
   </AmplifyAuthenticator>
