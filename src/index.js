@@ -2,12 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // import MusicApp from './MusicApp';
-import FemomSQIApp from './FemomSQIApp';
+// import FemomSQIApp from './FemomSQIApp';
+import LandingPageApp from './LandingPageApp';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <FemomSQIApp />
+    <LandingPageApp></LandingPageApp>
   </React.StrictMode>,
   document.getElementById('root')
 );
