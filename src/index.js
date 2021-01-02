@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+// import MusicApp from './MusicApp';
+import FemomSQIApp from './FemomSQIApp';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <FemomSQIApp />
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -33,8 +33,8 @@ class SQITable extends Component {
 			<Table striped bordered hover size="sm">
 			  <thead>
 			    <tr >
-			      <th>Record</th>
-			      <th>Status</th>
+			      <th>record</th>
+			      <th>status</th>
 			      <th>mSQICh1</th>
                   <th>mSQICh2</th>
                   <th>mSQICh3</th>

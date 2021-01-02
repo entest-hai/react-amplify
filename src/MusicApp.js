@@ -28,7 +28,7 @@ const song = { title: "Song 3",
 
 Amplify.configure(awsconfig);
 
-function App() {
+function MusicApp() {
     const [songs, setSongs] = useState([])
     const [taks, setTasks] = useState([])
 
@@ -138,4 +138,4 @@ function App() {
     );
 }
 
-export default withAuthenticator(App);
+export default withAuthenticator(MusicApp);

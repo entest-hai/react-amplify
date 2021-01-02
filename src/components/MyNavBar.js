@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
+import {AmplifySignOut} from '@aws-amplify/ui-react'
 import './starter-template.css'
+import SignOutButton from './SignOutButton'
 
 class MyNavBar extends Component {
 	render() {
@@ -30,11 +32,17 @@ class MyNavBar extends Component {
               <a className="dropdown-item" href="#">Something else here</a>
             </div>
           </li>
+          <li>
+          </li>
         </ul>
+        
         <form className="form-inline my-2 my-lg-0">
           <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
           <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
+
+        <AmplifySignOut className="btn my-2 my-sm-0"></AmplifySignOut>
+
       </div>
     </nav>
 
