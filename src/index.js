@@ -2,13 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // import MusicApp from './MusicApp';
-import FemomSQIApp from './FemomSQIApp';
+// import FemomSQIApp from './FemomSQIApp';
+import FemomSQIReactApp from './FemomSQIReactApp';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <FemomSQIApp />
-  </React.StrictMode>,
+  
+    <FemomSQIReactApp />,
+  
   document.getElementById('root')
 );
 
