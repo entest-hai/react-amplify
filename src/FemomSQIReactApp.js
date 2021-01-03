@@ -18,11 +18,12 @@ export default function FemomSQIReactApp() {
 	<div>
 		<PrimarySearchAppBar></PrimarySearchAppBar>
 			<AmplifyAuthenticator>
-				<div>
+				<div >
 					<FemomSQITable  records={records}></FemomSQITable>
 					<ChildComponent onClick={value => {
 						setRecords([...value]);
 					}}></ChildComponent>
+					
 					
 				</div>
 			</AmplifyAuthenticator>
