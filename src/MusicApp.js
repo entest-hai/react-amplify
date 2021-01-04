@@ -138,4 +138,4 @@ function MusicApp() {
     );
 }
 
-export default withAuthenticator(MusicApp);
+export default MusicApp;

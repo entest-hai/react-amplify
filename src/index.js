@@ -3,13 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 // import MusicApp from './MusicApp';
 // import FemomSQIApp from './FemomSQIApp';
-import FemomSQIReactApp from './FemomSQIReactApp';
+// import FemomSQIReactApp from './FemomSQIReactApp';
+// import GridApp from './GridApp';
+// import AllApp from './AllApp';
+// import TestThemeApp from './test/ThemeApp';
+import PokemonApp from './test/PokemomApp';
 import reportWebVitals from './reportWebVitals';
+import {Router} from "react-router-dom";
+import {createBrowserHistory} from "history"; 
+const history = createBrowserHistory();
 
 ReactDOM.render(
-  
-    <FemomSQIReactApp />,
-  
+      <React.StrictMode>
+        <Router history={history}>
+          <PokemonApp />
+        </Router>
+      </React.StrictMode>,
   document.getElementById('root')
 );
 
