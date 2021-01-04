@@ -5,21 +5,28 @@ import './index.css';
 // import FemomSQIApp from './FemomSQIApp';
 // import FemomSQIReactApp from './FemomSQIReactApp';
 // import GridApp from './GridApp';
-// import AllApp from './AllApp';
+import AllApp from './AllApp';
 // import TestThemeApp from './test/ThemeApp';
-import PokemonApp from './test/PokemomApp';
+// import PokemonApp from './test/PokemomApp';
 import reportWebVitals from './reportWebVitals';
-import {Router} from "react-router-dom";
-import {createBrowserHistory} from "history"; 
-const history = createBrowserHistory();
+// import {Router} from "react-router-dom";
+// import {createBrowserHistory} from "history"; 
+// const history = createBrowserHistory();
+
+// ReactDOM.render(
+//       <React.StrictMode>
+//         <Router history={history}>
+//           <PokemonApp />
+//         </Router>
+//       </React.StrictMode>,
+//   document.getElementById('root')
+// );
 
 ReactDOM.render(
-      <React.StrictMode>
-        <Router history={history}>
-          <PokemonApp />
-        </Router>
-      </React.StrictMode>,
-  document.getElementById('root')
+  
+  <AllApp></AllApp>,
+  
+document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
