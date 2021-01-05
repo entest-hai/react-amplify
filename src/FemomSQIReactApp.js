@@ -48,16 +48,16 @@ function callSQIAPI(fileName, props) {
                 name: result.recordname,
                 samplingRate: 500,
                 gestationAge: 28,
-              mSQICh1: result.ch1msqi,
-              mSQICh2: result.ch2msqi,
-              mSQICh3: result.ch3msqi,
-              mSQICh4: result.ch4msqi,
-              fSQICh1: result.ch1fsqi,
-              fSQICh2: result.ch2fsqi,
-              fSQICh3: result.ch3fsqi,
-              fSQICh4: result.ch4fsqi,
-              rawECGSQI: result.rawecgsqi,
-              signalLost: result.signallostratio,
+              mSQICh1: result.rawmsqich1,
+              mSQICh2: result.rawmsqich2,
+              mSQICh3: result.rawmsqich3,
+              mSQICh4: result.rawmsqich4,
+              fSQICh1: result.fsqich1,
+              fSQICh2: result.fsqich2,
+              fSQICh3: result.fsqich3,
+              fSQICh4: result.fsqich4,
+              rawECGSQI: result.rawmsqich1,
+              signalLost: result.signallostratioch1,
               createdDate: (new Date()).toISOString(),
               description: "Test"
               })
@@ -175,7 +175,6 @@ const FemomSQITable = (props) => {
 			  <TableCell align="center">fSQICh2</TableCell>
 			  <TableCell align="center">fSQICh3</TableCell>
 			  <TableCell align="center">fSQICh4</TableCell>
-			  <TableCell align="center">rawECGSQI</TableCell>
 			  <TableCell align="center">signallost</TableCell>
 			</TableRow>
 		  </TableHead>
@@ -184,16 +183,15 @@ const FemomSQITable = (props) => {
 			  <TableRow key={row.recordname}>
 				<TableCell component="th" scope="row"> {row.recordname} </TableCell>
 				<TableCell align="center" className={row.pass==1 ? classes.tableCellPass : classes.tableCellFail}>{row.pass==1 ? "PASS" : "FAIL" }</TableCell>
-				<TableCell align="center">{Number(row.ch1msqi).toFixed(2)}</TableCell>
-				<TableCell align="center">{Number(row.ch2msqi).toFixed(2)}</TableCell>
-				<TableCell align="center">{Number(row.ch3msqi).toFixed(2)}</TableCell>
-				<TableCell align="center">{Number(row.ch4msqi).toFixed(2)}</TableCell>
-				<TableCell align="center">{Number(row.ch1fsqi).toFixed(2)}</TableCell>
-				<TableCell align="center">{Number(row.ch2fsqi).toFixed(2)}</TableCell>
-				<TableCell align="center">{Number(row.ch3fsqi).toFixed(2)}</TableCell>
-				<TableCell align="center">{Number(row.ch4fsqi).toFixed(2)}</TableCell>
-				<TableCell align="center">{Number(row.rawecgsqi).toFixed(2)}</TableCell>
-				<TableCell align="center">{Number(1.0-row.signallostratio).toFixed(2)}</TableCell>
+				<TableCell align="center">{Number(row.rawmsqich1).toFixed(2)}</TableCell>
+				<TableCell align="center">{Number(row.rawmsqich2).toFixed(2)}</TableCell>
+				<TableCell align="center">{Number(row.rawmsqich3).toFixed(2)}</TableCell>
+				<TableCell align="center">{Number(row.rawmsqich4).toFixed(2)}</TableCell>
+				<TableCell align="center">{Number(row.fsqich1).toFixed(2)}</TableCell>
+				<TableCell align="center">{Number(row.fsqich2).toFixed(2)}</TableCell>
+				<TableCell align="center">{Number(row.fsqich3).toFixed(2)}</TableCell>
+				<TableCell align="center">{Number(row.fsqich4).toFixed(2)}</TableCell>
+				<TableCell align="center">{Number(1.0-row.signallostratioch1).toFixed(2)}</TableCell>
 			  </TableRow>
 			))}
 		  </TableBody>
