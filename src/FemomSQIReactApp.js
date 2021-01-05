@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import AttachmentIcon from '@material-ui/icons/Attachment';
 import { Storage } from 'aws-amplify';
-import { DataStore } from '@aws-amplify/datastore'
+import { DataStore } from '@aws-amplify/datastore';
 import { Record } from "./models";
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';

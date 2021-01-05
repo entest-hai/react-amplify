@@ -1,3 +1,6 @@
+// 05 JAN 2020
+// re-use table for displaying queries from record DB table
+
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -24,6 +27,17 @@ const useStyles = makeStyles((theme) => ({
 export default function BasicTable(props) {
 
   const classes = useStyles();
+
+  const getStatus = (state) => {
+      switch (state) {
+          case 1:
+              return "PASS"
+          case 0:
+              return "FAIL"
+          default:
+              return "N/A"
+      }
+  }
   
   return (
         <TableContainer component={Paper}>
@@ -45,22 +59,27 @@ export default function BasicTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.records.map((row) => (
-            <TableRow key={row.recordname}>
-              <TableCell component="th" scope="row"> {row.recordname} </TableCell>
-              <TableCell align="center" className={row.pass==1 ? classes.tableCellPass : classes.tableCellFail}>{row.pass==1 ? "PASS" : "FAIL" }</TableCell>
-              <TableCell align="center">{Number(row.ch1msqi).toFixed(2)}</TableCell>
-              <TableCell align="center">{Number(row.ch2msqi).toFixed(2)}</TableCell>
-              <TableCell align="center">{Number(row.ch3msqi).toFixed(2)}</TableCell>
-              <TableCell align="center">{Number(row.ch4msqi).toFixed(2)}</TableCell>
-              <TableCell align="center">{Number(row.ch1fsqi).toFixed(2)}</TableCell>
-              <TableCell align="center">{Number(row.ch2fsqi).toFixed(2)}</TableCell>
-              <TableCell align="center">{Number(row.ch3fsqi).toFixed(2)}</TableCell>
-              <TableCell align="center">{Number(row.ch4fsqi).toFixed(2)}</TableCell>
-              <TableCell align="center">{Number(row.rawecgsqi).toFixed(2)}</TableCell>
-              <TableCell align="center">{Number(1.0-row.signallostratio).toFixed(2)}</TableCell>
+          {props.records ? (
+              props.records.map((row) => (
+            <TableRow key={row.id}>
+              <TableCell component="th" scope="row"> {row.name} </TableCell>
+              <TableCell align="center" className={row.pass==1 ? classes.tableCellPass : classes.tableCellFail}>{getStatus(row.pass)}</TableCell>
+              <TableCell align="center">{Number(row.mSQICh1).toFixed(2)}</TableCell>
+              <TableCell align="center">{Number(row.mSQICh2).toFixed(2)}</TableCell>
+              <TableCell align="center">{Number(row.mSQICh3).toFixed(2)}</TableCell>
+              <TableCell align="center">{Number(row.mSQICh4).toFixed(2)}</TableCell>
+              <TableCell align="center">{Number(row.fSQICh1).toFixed(2)}</TableCell>
+              <TableCell align="center">{Number(row.fSQICh2).toFixed(2)}</TableCell>
+              <TableCell align="center">{Number(row.fSQICh3).toFixed(2)}</TableCell>
+              <TableCell align="center">{Number(row.fSQICh4).toFixed(2)}</TableCell>
+              <TableCell align="center">{Number(row.rawECGSQI).toFixed(2)}</TableCell>
+              <TableCell align="center">{Number(1.0-row.signalLost).toFixed(2)}</TableCell>
             </TableRow>
-          ))}
+          ))
+          ) : (
+            <TableRow key={1}>
+            </TableRow>
+          )}
         </TableBody>
       </Table>
     </TableContainer>
