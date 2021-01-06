@@ -7,7 +7,7 @@ import './index.css';
 // import GridApp from './GridApp';
 import AllApp from './AllApp';
 // import TestThemeApp from './test/ThemeApp';
-// import PokemonApp from './test/PokemomApp';
+import PokemonApp from './test/PokemomApp';
 import reportWebVitals from './reportWebVitals';
 // import {Router} from "react-router-dom";
 // import {createBrowserHistory} from "history"; 
@@ -25,7 +25,8 @@ import reportWebVitals from './reportWebVitals';
 ReactDOM.render(
   
   <AllApp></AllApp>,
-  
+  // <PokemonApp></PokemonApp>,
+
 document.getElementById('root')
 );
 

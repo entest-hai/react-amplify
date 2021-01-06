@@ -134,12 +134,13 @@ const ChildComponent = (props) => {
         </div>  
 
         <div className={classes.uploadButton}>
-        <Button
-            variant="contained"
-            color="primary"
-            onClick = {event => {onSubmit(event)}}>
-            <CloudUploadIcon></CloudUploadIcon>    
-            Upload</Button>
+            <Button
+                variant="contained"
+                color="primary"
+                onClick = {event => {onSubmit(event)}}>
+                <CloudUploadIcon></CloudUploadIcon>
+                Upload
+            </Button>
         </div>
 
         </div>
