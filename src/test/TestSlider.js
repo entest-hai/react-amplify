@@ -7,13 +7,14 @@ import {Box} from "@material-ui/core/";
 import SearchIcon from '@material-ui/icons/Search';
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Input from "@material-ui/core/Input";
-import {Search} from "@material-ui/icons";
 import TextField from "@material-ui/core/TextField";
+import Search from "./Search";
+import SQISlider from "./Slider";
 
 const MySlider = (props) => {
     const useStyles = makeStyles((theme) => ({
         root: {
-            width: 500,
+            // width: 300,
         },
         margin: {
             height: theme.spacing(3),
@@ -21,22 +22,50 @@ const MySlider = (props) => {
     }));
 
     const marks = [
+      {
+        value: 0,
+        label: '0',
+      },
+      {
+        value: 0.1,
+        label: '0.1',
+      },
+      {
+        value: 0.2,
+        label: '0.3',
+      },
+      {
+          value: 0.3,
+          label: '0.3',
+      },
+      {
+          value: 0.4,
+          label: '0.4',
+      },
         {
-            value: 0,
-            label: '0°C',
-        },
-        {
-            value: 20,
-            label: '20°C',
-        },
-        {
-            value: 37,
-            label: '37°C',
-        },
-        {
-            value: 100,
-            label: '100°C',
-        },
+        value: 0.5,
+        label: '0.5',
+      },
+      {
+        value: 0.6,
+        label: '0.6',
+      },
+      {
+        value: 0.7,
+        label: '0.7',
+      },
+      {
+          value: 0.8,
+          label: '0.8',
+      },
+      {
+          value: 0.9,
+          label: '0.9',
+      },
+      {
+        value: 1.0,
+        label: '1.0',
+      },
     ];
 
     const classes = useStyles();
@@ -49,8 +78,11 @@ const MySlider = (props) => {
                 {props.mark ? props.mark : "Mark"}
             </Typography>
             <Slider
-                defaultValue={props.defaultValue ? props.defaultValue : 30}
+                defaultValue={props.defaultValue ? props.defaultValue : 0.5}
                 aria-labelledby="discrete-slider-custom"
+                min={0.0}
+                max={1.0}
+                step={0.05}
                 step={10}
                 valueLabelDisplay="auto"
                 marks={marks}
@@ -60,82 +92,19 @@ const MySlider = (props) => {
     );
 }
 
-const SearchView = (props) => {
-    const enterKeyCode = 13;
-    const useStyles = makeStyles((theme) => ({
-        root: {
-            width: 500,
-            display: "flex",
-            borderRadius: theme.shape.borderRadius,
-            backgroundColor: fade(theme.palette.common.black, 0.10),
-            // backgroundColor: '#757ce8',
-            paddingLeft: "0px",
-            paddingRight: "0px",
-            marginTop: "2px",
-            marginBottom: "2px",
-        },
-        searchIcon: {
-            alignSelf: "flex-end",
-            marginBottom: "2px",
-            color: "white",
-        },
-        searchInput: {
-            width: "500px",
-            margin: "2px",
-            color: "white",
-        },
-    }));
-    const classes = useStyles();
-    const onChange = (event) => {
-        if(event.keyCode == enterKeyCode){
-            if (props.onSubmitted) {
-                props.onSubmitted(event.target.value);
-            }
-        }
-
-        // Do query and update table
-    }
-    return (
-        // <Input
-        //     color={'primary'}
-        //     fullWidth={true}
-        //     id="input-with-icon-adornment"
-        //     startAdornment={
-        //         <InputAdornment position="start">
-        //             <SearchIcon />
-        //         </InputAdornment>}
-        //     onKeyDown={event => {onChange(event)}}
-        // />
-
-        <div className={classes.root}>
-            <SearchIcon className={classes.searchIcon}>
-            </SearchIcon>
-            <TextField
-                className={classes.searchInput}
-                label={"Record"}
-                variant={"standard"}
-                onKeyDown={event => onChange(event)}
-                InputProps={{}}
-            >
-            </TextField>
-        </div>
-    )
-}
-
 const TestSliderView = () => {
     return (
         <div>
             <AppBar></AppBar>
             <Box pl={2} pt={2}>
-                <MySlider mark={"SQI"} defaultValue={80} ></MySlider>
+                {/*<MySlider mark={"SQI"} defaultValue={80} ></MySlider>*/}
+                <SQISlider ></SQISlider>
             </Box>
-            <Box pl={2} pt={2} width={320}>
-                <SearchView ></SearchView>
+            <Box pl={2} pt={2}>
+                <Search ></Search>
             </Box>
         </div>
     )
 }
 
-export {
-    TestSliderView, SearchView,
-}
+export default TestSliderView;

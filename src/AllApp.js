@@ -8,7 +8,7 @@ import TestQuery from './test/TestDBQuery';
 import TestUploadAWSS3View from "./test/TestUploadAWSS3";
 import PromiseView from "./test/PromiseAwaitAsynch";
 import PokemomApp from "./test/PokemomApp";
-import {TestSliderView} from "./test/TestSlider";
+import TestSliderView from "./test/TestSlider";
 
 export default function AllApp() {
     return (

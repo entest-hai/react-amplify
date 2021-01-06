@@ -10,8 +10,7 @@ import FemomSQITable from "../components/FemomSQITable";
 import {Song, Record} from "../models";
 import SQISlider from "./Slider";
 import Box from '@material-ui/core/Box';
-import {SearchView} from "./TestSlider";
-import {Search} from "@material-ui/icons";
+import Search from "./Search";
 Amplify.configure(awsconfig);
 
 async function testDatstoreQuery() {
@@ -68,17 +67,14 @@ const TestDBQueryView = () => {
 
     return (
         <div>
-            <Box
-              pt={2}
-              pl={2}
-              display="flex"
+            <Box pt={2} pl={2} pr={2} display="flex"
               // justifyContent="center"
               // alignItems="center"
               minHeight="5vh"
                 ><SQISlider onCommitted={number => {setSqi(number)}}></SQISlider>
             </Box>
-            <Box pl={2}>
-                <SearchView onSubmitted={name => {searchRecords(name)}}></SearchView>
+            <Box pl={2} pr={2} display="flex">
+                <Search onSubmitted={name => {searchRecords(name)}}></Search>
             </Box>
             <FemomSQITable records={records}></FemomSQITable>
         </div>
