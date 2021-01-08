@@ -9,6 +9,9 @@ import TestUploadAWSS3View from "./test/TestUploadAWSS3";
 import PromiseView from "./test/PromiseAwaitAsynch";
 import PokemomApp from "./test/PokemomApp";
 import TestSliderView from "./test/TestSlider";
+import CSSFlexBox from "./test/TestFlexBox";
+import CTGView from "./test/TestImage";
+import FemomSQITableButton from "./components/FemomSQITableButton";
 
 export default function AllApp() {
     return (
@@ -24,6 +27,9 @@ export default function AllApp() {
                     <Route path="/promise" component={PromiseView}></Route>
                     <Route path="/slider" component={TestSliderView}></Route>
                     <Route path="/poke" component={PokemomApp}></Route>
+                    <Route path="/css" component={CSSFlexBox}></Route>
+                    <Route path="/ctg" component={CTGView}></Route>
+                    <Route path="/tb" component={FemomSQITableButton}></Route>
                 </Switch>
                 </div>
             </Router>

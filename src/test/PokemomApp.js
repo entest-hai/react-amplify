@@ -4,6 +4,7 @@
 // Grid container for array of cards 
 import React, {useState} from 'react';
 import { Route, Switch } from "react-router-dom";
+import history from "./history";
 import {AppBar,
    Toolbar,
    Grid,
@@ -58,8 +59,8 @@ const Pokemon = (props) => {
     </div>
 }
 
-const PokemomApp = (props) => {
-    const {history} = props; 
+const PokemomApp = () => {
+
     const [pokemonData, setpokemonData] = useState(mockData);
     const classes = useStyles();
     
@@ -112,16 +113,16 @@ const PokemomApp = (props) => {
 }
 
 
-const PokemomAppRoute = () => (
-    <Switch>
-      <Route exact path="/" render={(props) => <PokemomApp {...props} />} />
-      <Route
-      exact
-      path="/:pokemonId"
-      render={(props) => <Pokemon {...props} />}
-    />
-    </Switch>
-  );
-  
+// const PokemomAppRoute = () => (
+//     <Switch>
+//       <Route exact path="/" render={(props) => <PokemomApp {...props} />} />
+//       <Route
+//       exact
+//       path="/:pokemonId"
+//       render={(props) => <Pokemon {...props} />}
+//     />
+//     </Switch>
+//   );
+//
 
 export default PokemomApp;

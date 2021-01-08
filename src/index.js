@@ -8,10 +8,11 @@ import './index.css';
 import AllApp from './AllApp';
 // import TestThemeApp from './test/ThemeApp';
 import PokemonApp from './test/PokemomApp';
+import FemomSQITableButton from "./components/FemomSQITableButton";
 import reportWebVitals from './reportWebVitals';
-// import {Router} from "react-router-dom";
-// import {createBrowserHistory} from "history"; 
-// const history = createBrowserHistory();
+import {Router} from "react-router-dom";
+import history from "./test/history";
+import App from "./App";
 
 // ReactDOM.render(
 //       <React.StrictMode>
@@ -22,12 +23,30 @@ import reportWebVitals from './reportWebVitals';
 //   document.getElementById('root')
 // );
 
-ReactDOM.render(
-  
-  <AllApp></AllApp>,
-  // <PokemonApp></PokemonApp>,
+// ReactDOM.render(
+//
+//   // <AllApp></AllApp>,
+//   <PokemonApp></PokemonApp>,
+//
+// document.getElementById('root')
+// );
 
-document.getElementById('root')
+// ReactDOM.render(
+//       <React.StrictMode>
+//         <Router history={history}>
+//           <FemomSQITableButton />
+//         </Router>
+//       </React.StrictMode>,
+//   document.getElementById('root')
+// );
+
+ReactDOM.render(
+  <React.StrictMode>
+    <Router history={history}>
+      <App />
+    </Router>
+  </React.StrictMode>,
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
