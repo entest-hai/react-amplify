@@ -1,5 +1,86 @@
 export const schema = {
     "models": {
+        "HeartRate": {
+            "name": "HeartRate",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "mHR": {
+                    "name": "mHR",
+                    "isArray": true,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true
+                },
+                "fHR": {
+                    "name": "fHR",
+                    "isArray": true,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true
+                },
+                "mSQI": {
+                    "name": "mSQI",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "fSQI": {
+                    "name": "fSQI",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "time": {
+                    "name": "time",
+                    "isArray": true,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true
+                },
+                "desc": {
+                    "name": "desc",
+                    "isArray": false,
+                    "type": "AWSJSON",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "HeartRates",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "Record": {
             "name": "Record",
             "fields": {
@@ -261,5 +342,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "9a88889a3a868c25ef3fc896f71f3886"
+    "version": "c0c6a4c56e20314f7ab1831bb2a2329a"
 };
