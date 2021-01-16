@@ -4,6 +4,16 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
+export declare class Beat {
+  readonly id: string;
+  readonly mHR?: number[];
+  readonly fHR?: number[];
+  readonly time?: number[];
+  readonly awstime?: string;
+  constructor(init: ModelInit<Beat>);
+  static copyOf(source: Beat, mutator: (draft: MutableModel<Beat>) => MutableModel<Beat> | void): Beat;
+}
+
 export declare class HeartRate {
   readonly id: string;
   readonly mHR?: (number | null)[];

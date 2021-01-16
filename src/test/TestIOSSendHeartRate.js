@@ -3,7 +3,7 @@ import {makeStyles} from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import { DataStore, Predicates } from '@aws-amplify/datastore';
-import {HeartRate, Record, Song} from "../models";
+import {HeartRate, Beat, Song} from "../models";
 import {API, graphqlOperation, Storage} from "aws-amplify";
 import {createSong, createRecord} from "../graphql/mutations";
 import Table from '@material-ui/core/Table';
@@ -35,14 +35,11 @@ function compare (beata, beatb){
 }
     // Write heart rate to DB
 const writeHRToDB = async (heartRateRecord) => {
-    const beat = new HeartRate(
+    const beat = new Beat(
         {
             mHR: [90,90,90],
             fHR: [150,152,153],
-            mSQI: 1.0,
-            fSQI: 1.0,
-            time: [(new Date()).toISOString(),(new Date()).toISOString(),(new Date()).toISOString()],
-            desc: JSON.stringify({mHR:[90,90,90],fHR:[150,151,150]})
+            time: 1
         }
     )
 
@@ -204,7 +201,7 @@ const BasicTable = (props) => {
   );
 }
 
-const ObserveDBTableView = () => {
+const IOSSendHeartRateView = () => {
      // UseEffect when data changes table is updated
     const useStyles = makeStyles(()=>({
         root: {
@@ -418,4 +415,4 @@ const ObserveDBTableView = () => {
         </Box>
     )
 }
-export  default ObserveDBTableView;
+export  default IOSSendHeartRateView;

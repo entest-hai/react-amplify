@@ -297,7 +297,8 @@ const ObserveDBTableView = () => {
     // parse heart rate object when fetching from database
     const parseOneHeartRate = (obj) => {
         var heartRateArray = []
-        for (var i=0; i< obj.mHR.length; i++) {
+        if (obj.mHR) {
+            for (var i=0; i< obj.mHR.length; i++) {
                 heartRateArray.push({
                     id: uuidv4(),
                     time: obj.time ? obj.time[0] : "NaN",
@@ -307,6 +308,7 @@ const ObserveDBTableView = () => {
                     fSQI: obj.fSQI,
                 })
             }
+        }
         return heartRateArray;
     }
 

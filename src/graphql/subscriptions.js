@@ -18,6 +18,25 @@ export const onCreateSong = /* GraphQL */ `
     }
   }
 `;
+
+export const onCreateSongFilter = /* GraphQL */ `
+  subscription OnCreateSongFilter($owner: String!) {
+    onCreateSongFilter(owner: $owner) {
+      id
+      title
+      description
+      filePath
+      like
+      owner
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
 export const onUpdateSong = /* GraphQL */ `
   subscription OnUpdateSong {
     onUpdateSong {

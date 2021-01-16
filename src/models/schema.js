@@ -1,5 +1,72 @@
 export const schema = {
     "models": {
+        "Beat": {
+            "name": "Beat",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "mHR": {
+                    "name": "mHR",
+                    "isArray": true,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": [],
+                    "isArrayNullable": true
+                },
+                "fHR": {
+                    "name": "fHR",
+                    "isArray": true,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": [],
+                    "isArrayNullable": true
+                },
+                "time": {
+                    "name": "time",
+                    "isArray": true,
+                    "type": "Int",
+                    "isRequired": true,
+                    "attributes": [],
+                    "isArrayNullable": true
+                },
+                "awstime": {
+                    "name": "awstime",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "Beats",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "HeartRate": {
             "name": "HeartRate",
             "fields": {
@@ -342,5 +409,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "c0c6a4c56e20314f7ab1831bb2a2329a"
+    "version": "ca67c375d24e1e8be91d00c2d13cb1ce"
 };

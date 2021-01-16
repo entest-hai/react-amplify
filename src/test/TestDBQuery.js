@@ -60,10 +60,10 @@ const TestDBQueryView = () => {
         }
     }
 
-        useEffect(effect => {
-            filterRecords(sqi);
-            // searchRecords(recordName);
-        },[sqi]);
+    useEffect(effect => {
+        filterRecords(sqi);
+        // searchRecords(recordName);
+    },[sqi]);
 
     return (
         <div>

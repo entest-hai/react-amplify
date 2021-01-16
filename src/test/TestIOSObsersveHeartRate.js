@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {makeStyles} from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
-import { DataStore, Predicates } from '@aws-amplify/datastore';
+import { DataStore } from '@aws-amplify/datastore';
 import {HeartRate, Record, Song} from "../models";
 import {API, graphqlOperation, Storage} from "aws-amplify";
 import {createSong, createRecord} from "../graphql/mutations";
@@ -16,7 +16,7 @@ import Paper from '@material-ui/core/Paper';
 import {v4 as uuidv4} from 'uuid';
 import AttachmentIcon from "@material-ui/icons/Attachment";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
-import heartRateData from "./data"
+import FavoriteIcon from "@material-ui/icons/Favorite";
 
 const sqiApiUrl = "https://bln9cf30wj.execute-api.ap-southeast-1.amazonaws.com/default/pythontest?filename=s3://amplifyjsdb22d608f3e94d85852ea891d3a9bbca114347-dev/public/"
 const fhrApiUrl = "https://bln9cf30wj.execute-api.ap-southeast-1.amazonaws.com/default/femomfhr?filename=s3://amplifyjsdb22d608f3e94d85852ea891d3a9bbca114347-dev/public/"
@@ -204,7 +204,7 @@ const BasicTable = (props) => {
   );
 }
 
-const ObserveDBTableView = () => {
+const IOSObservedHeartRateView = () => {
      // UseEffect when data changes table is updated
     const useStyles = makeStyles(()=>({
         root: {
@@ -297,22 +297,7 @@ const ObserveDBTableView = () => {
     // parse heart rate object when fetching from database
     const parseOneHeartRate = (obj) => {
         var heartRateArray = []
-        for (var i=0; i< obj.mHR.length; i++) {
-                heartRateArray.push({
-                    id: uuidv4(),
-                    time: obj.time ? obj.time[0] : "NaN",
-                    mHR: obj.mHR[i],
-                    fHR: obj.fHR[i],
-                    mSQI: obj.mSQI,
-                    fSQI: obj.fSQI,
-                })
-            }
-        return heartRateArray;
-    }
-
-    const parseHeartRate = (queryObjects) => {
-        var heartRateArray = []
-        for (var obj of queryObjects) {
+        if (obj.mHR) {
             for (var i=0; i< obj.mHR.length; i++) {
                 heartRateArray.push({
                     id: uuidv4(),
@@ -322,6 +307,25 @@ const ObserveDBTableView = () => {
                     mSQI: obj.mSQI,
                     fSQI: obj.fSQI,
                 })
+            }
+        }
+        return heartRateArray;
+    }
+
+    const parseHeartRate = (queryObjects) => {
+        var heartRateArray = []
+        for (var obj of queryObjects) {
+            if (obj.mHR) {
+                for (var i=0; i< obj.mHR.length; i++) {
+                heartRateArray.push({
+                    id: uuidv4(),
+                    time: obj.time ? obj.time[0] : "NaN",
+                    mHR: obj.mHR[i],
+                    fHR: obj.fHR[i],
+                    mSQI: obj.mSQI,
+                    fSQI: obj.fSQI,
+                })
+            }
             }
         }
        return heartRateArray
@@ -340,82 +344,22 @@ const ObserveDBTableView = () => {
         }
     }
 
-    var myTimer;
-
-    const sendHeartRate = () => {
-        var count = 0
-        var sendPeriod = 10
-        var numHeartRatePerSend = sendPeriod * 4
-        myTimer = setInterval(()=>{
-            var offset = count * numHeartRatePerSend
-          if (count < heartRateData.mHR.length / 240) {
-                const beat = new HeartRate(
-            {
-                mHR: heartRateData.mHR.slice(offset, offset + numHeartRatePerSend),
-                fHR: heartRateData.fHR.slice(offset, offset + numHeartRatePerSend),
-                mSQI: 1.0,
-                fSQI: 1.0,
-                time: [(new Date()).toISOString(),(new Date()).toISOString(),(new Date()).toISOString()],
-                desc: JSON.stringify({mHR:[90,90,90],fHR:[150,151,150]})
-            }
-        )
-            writeHRToDB(beat);
-            console.log("send beat to DB", beat);
-            count += 1;
-          }
-        }, sendPeriod*1000)
-    }
-
-     const stopSendHeartRate = () => {
-       console.log("stop send heart rate to DB")
-       clearInterval(myTimer);
-    }
-
-    const deleteDBTable = async () => {
-        console.log("delete db table ")
-        // try {
-        //     const queryObjects = await DataStore.query(HeartRate);
-        //     for (var obj of queryObjects) {
-        //         DataStore.delete(obj);
-        //         console.log("delete an obj");
-        //     }
-        // } catch (error) {
-        //     console.log("ERROR not able to fetch DB", error);
-        // }
-
-        try {
-            await DataStore.delete(HeartRate, Predicates.ALL);
-        } catch (error){
-            console.log("error not able to delete db table", error)
-        }
-    }
-
     // sort by time stamp
     return (
         <Box>
-            {/*<Button disabled="true" variant="contained" color="primary" onClick={() => fetchSongs()}>*/}
-            {/*    Fetch HR*/}
-            {/*</Button>*/}
-            <Button variant="contained" color="default" onClick={() => deleteDBTable()}>
-                Delete DB
+            <Button variant="contained"
+                    color="primary"
+                    onClick={() => observeHeartRate()}>
+                    <FavoriteIcon color="secondary"></FavoriteIcon>
+                    Observe Heart Rate
             </Button>
-            <Button variant="contained" color="secondary" onClick={() => sendECG()}>
-                Send ECG
+            <Button variant="contained" color="default" onClick={() => fetchHeartRate()}>
+                Fetch HR
             </Button>
-             <Button variant="contained" color="primary" onClick={() => sendHeartRate()}>
-                Start Stream HeartRate
-            </Button>
-             <Button variant="contained" color="primary" onClick={() => stopSendHeartRate()}>
-                Stop Stream HeartRate
-            </Button>
-            {/*<Button disabled="true" variant="contained" color="default" onClick={() => observeHeartRate()}>*/}
-            {/*    Observe HR*/}
-            {/*</Button>*/}
-            <S3UploadForm>
-            </S3UploadForm>
-            {/*<BasicTable rows={heartRateArray}>*/}
-            {/*</BasicTable>*/}
+            <BasicTable rows={heartRateArray}>
+            </BasicTable>
         </Box>
     )
 }
-export  default ObserveDBTableView;
+export  default IOSObservedHeartRateView;
+

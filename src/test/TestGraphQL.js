@@ -1,46 +1,39 @@
-// 01 JAN 2021 should use ToDo(_version) when deleting or updating a record 
-// Datastore versus graphsql  
+// JAN 17 2021 API.graphql to subsribe to Song(owner: "Minh")
+// 1. go to subscriptions.js and add onCreateSongFilter to subscription
+// 2. go to Appsync console schema and add onCreateSongFilter to subscription
+// 3. write subscribe function using API.graphql and add to useEffect()
 
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Amplify, { API, graphqlOperation } from 'aws-amplify';
-import awsconfig from './aws-exports';
-import { AmplifySignOut, withAuthenticator } from '@aws-amplify/ui-react';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { Paper, IconButton } from '@material-ui/core';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import { listSongs, listTodos } from './graphql/queries';
-import { updateSong, createSong } from './graphql/mutations';
-import { createTodo, updateTodo, deleteTodo } from './graphql/mutations';
-import { Song } from "./models";
-
-const todo = { name: "My first todo",
-              description: "Hello world!" };
-
-const song = { title: "Song 3",
-               description: "We Are The World",
-               filePath: "file path",
-               like: 30, 
-               owner: "Minh" }
+import React, {useEffect, useState} from "react";
+import Amplify, {API, graphqlOperation} from "aws-amplify";
+import * as queries from './../graphql/queries'
+import {AmplifySignOut} from "@aws-amplify/ui-react";
+import {IconButton, Paper} from "@material-ui/core";
+import PlayArrowIcon from "@material-ui/icons/PlayArrow";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import { updateSong, createSong } from './../graphql/mutations';
+import './../App.css'
+import {listSongs} from "./../graphql/queries";
+import {onCreateSongFilter} from "../graphql/subscriptions";
+import Button from "@material-ui/core/Button";
+import awsconfig from "../aws-exports";
 
 Amplify.configure(awsconfig);
 
-function MusicApp() {
-    const [songs, setSongs] = useState([])
-    const [taks, setTasks] = useState([])
+const song = { title: "Song 1",
+               description: "We Are Not The World",
+               filePath: "file path",
+               like: 1,
+               owner: "Minh" }
 
-    useEffect(() => {
-        
-        // writeSongsToDB(song)
-        fetchSongs();
-    }, []);
+const TestGraphQLView = () => {
+       const [songs, setSongs] = useState([])
 
+       useEffect(effect => {
+        subscribe()
+        getSongs();
+    },[]);
 
-
-    const writeSongsToDB = async (song) => {
+  const writeSongsToDB = async (song) => {
         try {
             await API.graphql(graphqlOperation(createSong, {input: song}));
             console.log("write song to DB successfully");
@@ -49,41 +42,29 @@ function MusicApp() {
         }
     }
 
-    const writeTaskToDB = async (task) => {
-        try {
-            await API.graphql(graphqlOperation(createTodo, {input: task}));
-            console.log("Write task to DB successfully")
-        } catch (error) {
-            console.logo("error write task to DB", error)
-        }
+    const subscribe = () => {
+        API.graphql({
+            query: onCreateSongFilter,
+            variables: {
+                owner: "Minh"
+            }
+        })
+            .subscribe({
+                next: songData => {
+                    console.log("subscribe songs ", songData.value.data)
+                }
+            })
     }
 
+    const getSongs = async () => {
+         const songData = await API.graphql(graphqlOperation(listSongs));
+        const songList = songData.data.listSongs.items;
+        console.log('song list', songList)
+        setSongs(songList)
+        console.log(songList)
+    }
 
-    const fetchSongs = async () => {
-        try {
-            const songData = await API.graphql(graphqlOperation(listSongs)); 
-            const songList = songData.data.listSongs.items; 
-            console.log('song list', songList)
-            setSongs(songList)
-        } catch (error) {
-            console.log("error on fetching songs", error)
-        }
-
-    };
-
-    const fetchTasks = async () => {
-        try {
-            const taskData = await API.graphql(graphqlOperation(listTodos)); 
-            const taskList = taskData.data.listTodos.items; 
-            console.log('song list', taskList)
-            setTasks(taskList)
-        } catch (error) {
-            console.log("error on fetching songs", error)
-        }
-
-    };
-
-    const addLike = async (idx) => {
+       const addLike = async (idx) => {
         try {
             const song = songs[idx];
             console.log("update song", song.id)
@@ -111,6 +92,7 @@ function MusicApp() {
             <header className="App-header">
                 <AmplifySignOut />
                 <h2>My App Content</h2>
+                <Button variant="contained" color="primary" onClick={() => writeSongsToDB(song)}>Create Song</Button>
             </header>
             <div className="songList">
                 {songs.map((song, idx) => {
@@ -140,4 +122,4 @@ function MusicApp() {
     );
 }
 
-export default MusicApp;
+export default TestGraphQLView;

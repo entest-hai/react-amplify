@@ -4,9 +4,10 @@ import { schema } from './schema';
 
 
 
-const { HeartRate, Record, Song, Todo } = initSchema(schema);
+const { Beat, HeartRate, Record, Song, Todo } = initSchema(schema);
 
 export {
+  Beat,
   HeartRate,
   Record,
   Song,
