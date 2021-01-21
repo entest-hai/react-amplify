@@ -33,7 +33,7 @@ function MusicApp() {
         // writeSongsToDB(song)
         fetchSongs();
     }, []);
-    
+
     const writeSongsToDB = async (song) => {
         try {
             await API.graphql(graphqlOperation(createSong, {input: song}));

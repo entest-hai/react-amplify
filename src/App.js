@@ -9,11 +9,13 @@ import ExChart from "./test/TestChart";
 import TestGraphQLView from "./test/TestGraphQL";
 import MusicApp from "./MusicApp";
 import MessageTableView from "./test/TestDataStore";
+import TestUploadAWSS3View from "./test/TestUploadAWSS3";
 
 const App = () => (
   <Switch>
     <Route exact path="/" render={() => <FemomSQITableButton />}/>
     <Route exact path="/ds" render={() => <MessageTableView />}  />
+    <Route exact path="/s3" render={() => <TestUploadAWSS3View />}  />
     <Route exact path="/ql" render={() => <TestGraphQLView />}  />
     <Route exact path="/sqi" render={() => <FemomSQIReactApp />}  />
     <Route exact path="/fe" render={() => <ObserveDBTableView />}  />

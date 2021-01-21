@@ -11,9 +11,9 @@ import AttachmentIcon from "@material-ui/icons/Attachment";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import {Storage} from "aws-amplify";
 
-var albumBucketName = "amplifyjsdb22d608f3e94d85852ea891d3a9bbca114347-dev";
+var albumBucketName = "amplify-fechecker-dev-154329-deployment";
 var bucketRegion = "ap-southeast-1";
-var IdentityPoolId = "ap-southeast-1:3e2e2a97-9f56-42a8-8df0-68676a7680c8";
+var IdentityPoolId = "ap-southeast-1:2e834d39-1774-4ce1-9ea7-099964ad5c73";
 
 AWS.config.update({
   region: bucketRegion,
