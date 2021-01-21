@@ -13,7 +13,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import { updateSong, createSong } from './../graphql/mutations';
 import './../App.css'
 import {listSongs} from "./../graphql/queries";
-import {onCreateSongFilter} from "../graphql/subscriptions";
+// import {onCreateSongFilter} from "../graphql/subscriptions";
 import Button from "@material-ui/core/Button";
 import awsconfig from "../aws-exports";
 
@@ -29,7 +29,7 @@ const TestGraphQLView = () => {
        const [songs, setSongs] = useState([])
 
        useEffect(effect => {
-        subscribe()
+        // subscribe();
         getSongs();
     },[]);
 
@@ -42,19 +42,19 @@ const TestGraphQLView = () => {
         }
     }
 
-    const subscribe = () => {
-        API.graphql({
-            query: onCreateSongFilter,
-            variables: {
-                owner: "Minh"
-            }
-        })
-            .subscribe({
-                next: songData => {
-                    console.log("subscribe songs ", songData.value.data)
-                }
-            })
-    }
+    // const subscribe = () => {
+    //     API.graphql({
+    //         query: onCreateSongFilter,
+    //         variables: {
+    //             owner: "Minh"
+    //         }
+    //     })
+    //         .subscribe({
+    //             next: songData => {
+    //                 console.log("subscribe songs ", songData.value.data)
+    //             }
+    //         })
+    // }
 
     const getSongs = async () => {
         const songData = await API.graphql(graphqlOperation(listSongs));

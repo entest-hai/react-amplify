@@ -14,13 +14,7 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { listSongs, listTodos } from './graphql/queries';
 import { updateSong, createSong } from './graphql/mutations';
-import { createTodo, updateTodo, deleteTodo } from './graphql/mutations';
 import { Song } from "./models";
-
-
-
-const todo = { name: "My first todo",
-              description: "Hello world!" };
 
 const song = { title: "Song 3",
                description: "We Are The World",
@@ -39,9 +33,7 @@ function MusicApp() {
         // writeSongsToDB(song)
         fetchSongs();
     }, []);
-
-
-
+    
     const writeSongsToDB = async (song) => {
         try {
             await API.graphql(graphqlOperation(createSong, {input: song}));
@@ -51,34 +43,12 @@ function MusicApp() {
         }
     }
 
-    const writeTaskToDB = async (task) => {
-        try {
-            await API.graphql(graphqlOperation(createTodo, {input: task}));
-            console.log("Write task to DB successfully")
-        } catch (error) {
-            console.logo("error write task to DB", error)
-        }
-    }
-
-
     const fetchSongs = async () => {
         try {
             const songData = await API.graphql(graphqlOperation(listSongs)); 
             const songList = songData.data.listSongs.items; 
             console.log('song list', songList)
             setSongs(songList)
-        } catch (error) {
-            console.log("error on fetching songs", error)
-        }
-
-    };
-
-    const fetchTasks = async () => {
-        try {
-            const taskData = await API.graphql(graphqlOperation(listTodos)); 
-            const taskList = taskData.data.listTodos.items; 
-            console.log('song list', taskList)
-            setTasks(taskList)
         } catch (error) {
             console.log("error on fetching songs", error)
         }

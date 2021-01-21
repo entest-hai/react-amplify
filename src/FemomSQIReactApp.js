@@ -24,7 +24,7 @@ import AppBar from './components/AppBar';
 // Configure AWS 
 Amplify.configure(awsconfig);
 // S3Bucket URL
-const url = "https://bln9cf30wj.execute-api.ap-southeast-1.amazonaws.com/default/pythontest?filename=s3://amplifyjsdb22d608f3e94d85852ea891d3a9bbca114347-dev/public/"
+const url = "https://bln9cf30wj.execute-api.ap-southeast-1.amazonaws.com/default/pythontest?filename="
 // Array to store SQITable 
 var results = []
 // Write to DB using datastore 
@@ -34,7 +34,8 @@ async function doWriteDB(record) {
 }
 // Call SQI API 
 function callSQIAPI(fileName, props) {
-      var apiURL = url + fileName;
+      let S3DataURL = "s3://" + awsconfig.aws_user_files_s3_bucket + "/public/" + fileName
+      var apiURL = url + S3DataURL;
       // perform API call to get SQI
       fetch(apiURL)
         .then(response => response.json())
@@ -63,9 +64,9 @@ function callSQIAPI(fileName, props) {
               createdDate: (new Date()).toISOString(),
               description: "femo device factory test OCT 2020",
               S3CTGURL: null,
-              S3DataURL: "s3://"+awsconfig.aws_user_files_s3_bucket+"/"+fileName
+              S3DataURL: S3DataURL
               });
-              // doWriteDB(record);
+              doWriteDB(record);
               // update result and result table
               results.push(result);
               props.onClick(results);

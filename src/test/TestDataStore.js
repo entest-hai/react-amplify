@@ -28,7 +28,7 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import {listMessages} from "./../graphql/queries";
-import {onCreateMessage, onCreateSongFilter} from "../graphql/subscriptions";
+import {onCreateMessage} from "../graphql/subscriptions";
 import Amplify from 'aws-amplify';
 import awsconfig from "../aws-exports";
 

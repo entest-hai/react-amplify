@@ -169,6 +169,34 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "rawMSQICh1": {
+                    "name": "rawMSQICh1",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "rawMSQICh2": {
+                    "name": "rawMSQICh2",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "rawMSQICh3": {
+                    "name": "rawMSQICh3",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "rawMSQICh4": {
+                    "name": "rawMSQICh4",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "mSQICh1": {
                     "name": "mSQICh1",
                     "isArray": false,
@@ -253,48 +281,6 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "createdDate": {
-                    "name": "createdDate",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "description": {
-                    "name": "description",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "rawMSQICh1": {
-                    "name": "rawMSQICh1",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "rawMSQICh2": {
-                    "name": "rawMSQICh2",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "rawMSQICh3": {
-                    "name": "rawMSQICh3",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "rawMSQICh4": {
-                    "name": "rawMSQICh4",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "S3DataURL": {
                     "name": "S3DataURL",
                     "isArray": false,
@@ -304,6 +290,20 @@ export const schema = {
                 },
                 "S3CTGURL": {
                     "name": "S3CTGURL",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "createdDate": {
+                    "name": "createdDate",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "description": {
+                    "name": "description",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,

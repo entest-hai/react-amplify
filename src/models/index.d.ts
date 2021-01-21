@@ -30,6 +30,10 @@ export declare class Record {
   readonly name: string;
   readonly samplingRate?: number;
   readonly gestationAge?: number;
+  readonly rawMSQICh1?: number;
+  readonly rawMSQICh2?: number;
+  readonly rawMSQICh3?: number;
+  readonly rawMSQICh4?: number;
   readonly mSQICh1?: number;
   readonly mSQICh2?: number;
   readonly mSQICh3?: number;
@@ -42,14 +46,10 @@ export declare class Record {
   readonly signalLostCh2?: number;
   readonly signalLostCh3?: number;
   readonly signalLostCh4?: number;
-  readonly createdDate?: string;
-  readonly description?: string;
-  readonly rawMSQICh1?: number;
-  readonly rawMSQICh2?: number;
-  readonly rawMSQICh3?: number;
-  readonly rawMSQICh4?: number;
   readonly S3DataURL?: string;
   readonly S3CTGURL?: string;
+  readonly createdDate?: string;
+  readonly description?: string;
   constructor(init: ModelInit<Record>);
   static copyOf(source: Record, mutator: (draft: MutableModel<Record>) => MutableModel<Record> | void): Record;
 }
