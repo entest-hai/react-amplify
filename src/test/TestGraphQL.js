@@ -57,7 +57,7 @@ const TestGraphQLView = () => {
     }
 
     const getSongs = async () => {
-         const songData = await API.graphql(graphqlOperation(listSongs));
+        const songData = await API.graphql(graphqlOperation(listSongs));
         const songList = songData.data.listSongs.items;
         console.log('song list', songList)
         setSongs(songList)

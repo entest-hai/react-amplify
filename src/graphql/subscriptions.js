@@ -18,7 +18,22 @@ export const onCreateSong = /* GraphQL */ `
     }
   }
 `;
-
+export const onCreateMessage = /* GraphQL */ `
+  subscription onCreateMessage {
+    onCreateMessage {
+      id
+      senderName
+      body
+      creationDate
+      __typename
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreateSongFilter = /* GraphQL */ `
   subscription OnCreateSongFilter($owner: String!) {
     onCreateSongFilter(owner: $owner) {

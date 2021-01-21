@@ -4,14 +4,13 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
-export declare class Beat {
+export declare class Message {
   readonly id: string;
-  readonly mHR?: number[];
-  readonly fHR?: number[];
-  readonly time?: number[];
-  readonly awstime?: string;
-  constructor(init: ModelInit<Beat>);
-  static copyOf(source: Beat, mutator: (draft: MutableModel<Beat>) => MutableModel<Beat> | void): Beat;
+  readonly body: string;
+  readonly senderName: string;
+  readonly creationDate: string;
+  constructor(init: ModelInit<Message>);
+  static copyOf(source: Message, mutator: (draft: MutableModel<Message>) => MutableModel<Message> | void): Message;
 }
 
 export declare class HeartRate {
@@ -39,14 +38,18 @@ export declare class Record {
   readonly fSQICh2?: number;
   readonly fSQICh3?: number;
   readonly fSQICh4?: number;
-  readonly rawECGSQI?: number;
-  readonly signalLost?: number;
   readonly signalLostCh1?: number;
   readonly signalLostCh2?: number;
   readonly signalLostCh3?: number;
   readonly signalLostCh4?: number;
   readonly createdDate?: string;
   readonly description?: string;
+  readonly rawMSQICh1?: number;
+  readonly rawMSQICh2?: number;
+  readonly rawMSQICh3?: number;
+  readonly rawMSQICh4?: number;
+  readonly S3DataURL?: string;
+  readonly S3CTGURL?: string;
   constructor(init: ModelInit<Record>);
   static copyOf(source: Record, mutator: (draft: MutableModel<Record>) => MutableModel<Record> | void): Record;
 }
@@ -60,12 +63,4 @@ export declare class Song {
   readonly owner: string;
   constructor(init: ModelInit<Song>);
   static copyOf(source: Song, mutator: (draft: MutableModel<Song>) => MutableModel<Song> | void): Song;
-}
-
-export declare class Todo {
-  readonly id: string;
-  readonly name: string;
-  readonly description?: string;
-  constructor(init: ModelInit<Todo>);
-  static copyOf(source: Todo, mutator: (draft: MutableModel<Todo>) => MutableModel<Todo> | void): Todo;
 }

@@ -1,5 +1,5 @@
 import './App.css';
-import React from "react";
+import React, {useEffect} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {AmplifyAuthenticator} from "@aws-amplify/ui-react";
 import Amplify from 'aws-amplify';
@@ -23,19 +23,15 @@ import AppBar from './components/AppBar';
 
 // Configure AWS 
 Amplify.configure(awsconfig);
-
-// S3Bucket URL 
+// S3Bucket URL
 const url = "https://bln9cf30wj.execute-api.ap-southeast-1.amazonaws.com/default/pythontest?filename=s3://amplifyjsdb22d608f3e94d85852ea891d3a9bbca114347-dev/public/"
-
 // Array to store SQITable 
 var results = []
-
 // Write to DB using datastore 
 async function doWriteDB(record) {
     console.log("write to db", (new Date()).toISOString());
     await DataStore.save(record);
 }
-
 // Call SQI API 
 function callSQIAPI(fileName, props) {
       var apiURL = url + fileName;
@@ -45,24 +41,31 @@ function callSQIAPI(fileName, props) {
         .then(result => {
               // write to DB
               let record = new Record({
-                name: result.recordname,
-                samplingRate: 500,
-                gestationAge: 28,
-              mSQICh1: result.rawmsqich1,
-              mSQICh2: result.rawmsqich2,
-              mSQICh3: result.rawmsqich3,
-              mSQICh4: result.rawmsqich4,
-              fSQICh1: result.fsqich1,
-              fSQICh2: result.fsqich2,
-              fSQICh3: result.fsqich3,
-              fSQICh4: result.fsqich4,
-              rawECGSQI: result.rawmsqich1,
-              signalLost: result.signallostratioch1,
+              name: result.recordname,
+              samplingRate: 500,
+              gestationAge: null,
+              rawMSQICh1: result.mSQI_ch1,
+              rawMSQICh2: result.mSQI_ch2,
+              rawMSQICh3: result.mSQI_ch3,
+              rawMSQICh4: result.mSQI_ch4,
+              mSQICh1: null,
+              mSQICh2: null,
+              mSQICh3: null,
+              mSQICh4: null,
+              fSQICh1: result.mSQI_ch1,
+              fSQICh2: result.mSQI_ch2,
+              fSQICh3: result.mSQI_ch3,
+              fSQICh4: result.mSQI_ch4,
+              signalLostCh1: result.SLR_ch1,
+              signalLostCh2: result.SLR_ch2,
+              signalLostCh3: result.SLR_ch3,
+              signalLostCh4: result.SLR_ch4,
               createdDate: (new Date()).toISOString(),
-              description: "Test"
-              })
-              
-              doWriteDB(record);
+              description: "femo device factory test OCT 2020",
+              S3CTGURL: null,
+              S3DataURL: "s3://"+awsconfig.aws_user_files_s3_bucket+"/"+fileName
+              });
+              // doWriteDB(record);
               // update result and result table
               results.push(result);
               props.onClick(results);
@@ -88,7 +91,6 @@ const ChildComponent = (props) => {
     const classes = useStyles();
     let textInput = null;
     const [file, setFile] = React.useState()
-    
     const onSubmit = (event) => {
         let uploadFile = file;
         if (!uploadFile) {
@@ -99,6 +101,7 @@ const ChildComponent = (props) => {
                 contentType: 'image/png'
             })
             .then (result => {
+                console.log(result);
                 callSQIAPI(fileName, props);
             })
             .catch(err => console.log(err));
@@ -172,11 +175,12 @@ const FemomSQITable = (props) => {
 			  <TableCell align="center">mSQICh2</TableCell>
 			  <TableCell align="center">mSQICh3</TableCell>
 			  <TableCell align="center">mSQICh4</TableCell>
-			  <TableCell align="center">mSQICh1</TableCell>
+			  <TableCell align="center">fSQICh1</TableCell>
 			  <TableCell align="center">fSQICh2</TableCell>
 			  <TableCell align="center">fSQICh3</TableCell>
 			  <TableCell align="center">fSQICh4</TableCell>
 			  <TableCell align="center">signallost</TableCell>
+             <TableCell align="center">inverted</TableCell>
 			</TableRow>
 		  </TableHead>
 		  <TableBody>
@@ -184,15 +188,16 @@ const FemomSQITable = (props) => {
 			  <TableRow key={row.recordname}>
 				<TableCell component="th" scope="row"> {row.recordname} </TableCell>
 				<TableCell align="center" className={row.pass==1 ? classes.tableCellPass : classes.tableCellFail}>{row.pass==1 ? "PASS" : "FAIL" }</TableCell>
-				<TableCell align="center">{Number(row.rawmsqich1).toFixed(2)}</TableCell>
-				<TableCell align="center">{Number(row.rawmsqich2).toFixed(2)}</TableCell>
-				<TableCell align="center">{Number(row.rawmsqich3).toFixed(2)}</TableCell>
-				<TableCell align="center">{Number(row.rawmsqich4).toFixed(2)}</TableCell>
-				<TableCell align="center">{Number(row.fsqich1).toFixed(2)}</TableCell>
-				<TableCell align="center">{Number(row.fsqich2).toFixed(2)}</TableCell>
-				<TableCell align="center">{Number(row.fsqich3).toFixed(2)}</TableCell>
-				<TableCell align="center">{Number(row.fsqich4).toFixed(2)}</TableCell>
-				<TableCell align="center">{Number(1.0-row.signallostratioch1).toFixed(2)}</TableCell>
+				<TableCell align="center">{Number(row.mSQI_ch1).toFixed(2)}</TableCell>
+				<TableCell align="center">{Number(row.mSQI_ch2).toFixed(2)}</TableCell>
+				<TableCell align="center">{Number(row.mSQI_ch3).toFixed(2)}</TableCell>
+				<TableCell align="center">{Number(row.mSQI_ch4).toFixed(2)}</TableCell>
+				<TableCell align="center">{Number(row.fSQI_ch1).toFixed(2)}</TableCell>
+				<TableCell align="center">{Number(row.fSQI_ch2).toFixed(2)}</TableCell>
+				<TableCell align="center">{Number(row.fSQI_ch3).toFixed(2)}</TableCell>
+				<TableCell align="center">{Number(row.fSQI_ch4).toFixed(2)}</TableCell>
+				<TableCell align="center">{Number(1.0-row.SLR_ch1).toFixed(2)}</TableCell>
+                  <TableCell align="center">{Number(row.Inverted_ch1+row.Inverted_ch2+row.Inverted_ch3+row.Inverted_ch4).toFixed(2)}</TableCell>
 			  </TableRow>
 			))}
 		  </TableBody>
@@ -205,6 +210,9 @@ const FemomSQITable = (props) => {
 // FemomSQIApp 
 export default function FemomSQIReactApp() {
 	const [records, setRecords] = React.useState([])
+    useEffect(() => {
+        console.log("FemomSQI", awsconfig.aws_user_files_s3_bucket)
+    }, [])
 	return (
 	<div>
 		<AppBar></AppBar>

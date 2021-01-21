@@ -74,6 +74,26 @@ export const listSongs = /* GraphQL */ `
     }
   }
 `;
+export const listMessages = /* GraphQL */ `
+  query listMessages(
+    $filter: ModelMessageFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listMessages(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id 
+        senderName
+        body
+        creationDate
+        _version
+        _deleted
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const syncTodos = /* GraphQL */ `
   query SyncTodos(
     $filter: ModelTodoFilterInput

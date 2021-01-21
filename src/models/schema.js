@@ -1,7 +1,7 @@
 export const schema = {
     "models": {
-        "Beat": {
-            "name": "Beat",
+        "Message": {
+            "name": "Message",
             "fields": {
                 "id": {
                     "name": "id",
@@ -10,40 +10,30 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "mHR": {
-                    "name": "mHR",
-                    "isArray": true,
-                    "type": "Float",
-                    "isRequired": true,
-                    "attributes": [],
-                    "isArrayNullable": true
-                },
-                "fHR": {
-                    "name": "fHR",
-                    "isArray": true,
-                    "type": "Float",
-                    "isRequired": true,
-                    "attributes": [],
-                    "isArrayNullable": true
-                },
-                "time": {
-                    "name": "time",
-                    "isArray": true,
-                    "type": "Int",
-                    "isRequired": true,
-                    "attributes": [],
-                    "isArrayNullable": true
-                },
-                "awstime": {
-                    "name": "awstime",
+                "body": {
+                    "name": "body",
                     "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "senderName": {
+                    "name": "senderName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "creationDate": {
+                    "name": "creationDate",
+                    "isArray": false,
+                    "type": "AWSDate",
+                    "isRequired": true,
                     "attributes": []
                 }
             },
             "syncable": true,
-            "pluralName": "Beats",
+            "pluralName": "Messages",
             "attributes": [
                 {
                     "type": "model",
@@ -235,20 +225,6 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "rawECGSQI": {
-                    "name": "rawECGSQI",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "signalLost": {
-                    "name": "signalLost",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "signalLostCh1": {
                     "name": "signalLostCh1",
                     "isArray": false,
@@ -286,6 +262,48 @@ export const schema = {
                 },
                 "description": {
                     "name": "description",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "rawMSQICh1": {
+                    "name": "rawMSQICh1",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "rawMSQICh2": {
+                    "name": "rawMSQICh2",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "rawMSQICh3": {
+                    "name": "rawMSQICh3",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "rawMSQICh4": {
+                    "name": "rawMSQICh4",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "S3DataURL": {
+                    "name": "S3DataURL",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "S3CTGURL": {
+                    "name": "S3CTGURL",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -371,43 +389,9 @@ export const schema = {
                     "properties": {}
                 }
             ]
-        },
-        "Todo": {
-            "name": "Todo",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "name": {
-                    "name": "name",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "description": {
-                    "name": "description",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                }
-            },
-            "syncable": true,
-            "pluralName": "Todos",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                }
-            ]
         }
     },
     "enums": {},
     "nonModels": {},
-    "version": "ca67c375d24e1e8be91d00c2d13cb1ce"
+    "version": "6f6cf81d70d67fba3a1e1dfde6f959f1"
 };
